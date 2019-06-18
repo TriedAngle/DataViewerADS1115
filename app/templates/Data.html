@@ -1,0 +1,34 @@
+{% extends '/defaults/Base.html' %}
+
+{% block content %}
+
+<form action="download" method="post">
+        <button type="submit">Download all files now</button>
+</form>
+
+<br>
+
+<table>
+    <thead>
+        <th>id</th>
+        <th>value 1</th>
+        <th>value 2</th>
+        <th>value 3</th>
+        <th>value 4</th>
+        <th>date</th>
+    </thead>
+
+    <tbody>
+        {% for i in range(data|length) %}
+            <tr>
+                <td>{{i}}</td>
+                <td>{{data[i]['value-0']}}</td>
+                <td>{{data[i]['value-1']}}</td>
+                <td>{{data[i]['value-2']}}</td>
+                <td>{{data[i]['value-3']}}</td>
+                <td>{{data[i]["year"] + "/" + data[i]["month"] + "/" + data[i]["day"] + "@" + data[i]["hour"] + ":" + data[i]["minute"] }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}
