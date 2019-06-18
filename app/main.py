@@ -41,21 +41,29 @@ def dict_from_csv(year, month, day, hour, minute, values):
     return dic
 
 def read_data():
-    with open('data.csv') as csv_file:
-        csv_reader = csv.reader(csv_file, delimiter=',')
-        line_count = 0
-        for row in csv_reader:
-            if line_count == 0:
-                pass
-            
-            values = [row[0],row[1],row[2],row[3]]
-            year = row[4]
-            month = row[5]
-            day = row[6]
-            hour = row[7]
-            minute = row[8]
-            data.append(dict_from_csv(year, month, day, hour, minute, values))
-            line_count += 1
+    if os.path.isfile(os.getcwd() + "/data.csv"):
+        with open('data.csv') as csv_file:
+            csv_reader = csv.reader(csv_file, delimiter=',')
+            line_count = 0
+            for row in csv_reader:
+                if line_count == 0:
+                    pass
+                
+                values = [row[0],row[1],row[2],row[3]]
+                year = row[4]
+                month = row[5]
+                day = row[6]
+                hour = row[7]
+                minute = row[8]
+                data.append(dict_from_csv(year, month, day, hour, minute, values))
+                line_count += 1
+        
+    if os.path.isfile(os.getcwd() + "/data.csv"):
+        amount = 0
+        for i in glob.glob(os.getcwd() + "/data_backups/*"):
+            amount += 1
+
+        subprocess.call(["cp", os.getcwd() + "/data.csv", os.getcwd() + "/data_backups/data" + str(amount) + ".csv" ])
 
 
 def saveData(data_to_save):
