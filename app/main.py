@@ -16,16 +16,7 @@ ip = "localhost"
 data_port = 5555
 retrieve_interval = 5
 
-save_data_interval = retrieve_interval * 3
-backup_data_interval = retrieve_interval * 9
-
-user = {
-    'username': 'Sebastian',
-    'age': 17
-}
-
 data = []
-
 
 # methods
 def dict_from_csv(year, month, day, hour, minute, values):
@@ -141,12 +132,12 @@ def get_data():
 @app.route('/')
 @app.route('/home')
 def home():
-    return render_template('Home.html', title='Home', user=user)
+    return render_template('Home.html', title='Home')
 
 
 @app.route('/data')
 def rtmeasure():
-    return render_template('Data.html', title='Data', data=data, user=user)
+    return render_template('Data.html', title='Data', data=data)
 
 
 @app.route('/download', methods=["POST"])

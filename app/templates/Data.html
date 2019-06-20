@@ -1,5 +1,10 @@
 {% extends '/defaults/Base.html' %}
 
+
+{% block meta_additions %}
+<meta http-equiv="refresh" content="5">
+{% endblock meta_additions %}
+
 {% block content %}
 <form action="download" method="post">
         <button type="submit">Download all files now</button>
